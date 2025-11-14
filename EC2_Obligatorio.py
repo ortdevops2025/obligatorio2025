@@ -15,6 +15,20 @@ sudo systemctl start httpd
 
 # Descargar archivos desde S3 al directorio web
 aws s3 sync s3://obligatorio2025qwertyuiop /var/www/html/
+mv /var/www/html/init_db.sql /tmp/ #cambia la base a otra ruta
+
+mysql -h <endpoint-rds> -u <DB_USER> -p<$RDS_ADMIN_PASSWORD> <DB_NAME> < /tmp/init_db.sql
+
+sudo tee /var/www/.env >/dev/null <<'ENV'
+   DB_HOST=<ENDPOINT>
+   DB_NAME=<DB_NAME>
+   DB_USER=<DB_USER>
+   DB_PASS=<DB_PASS>
+   
+   ENV
+   
+   sudo chown apache:apache /var/www/.env
+   sudo chmod 600 /var/www/.env```
 
 # Permisos para los archivos
 

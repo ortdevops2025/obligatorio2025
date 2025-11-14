@@ -20,8 +20,8 @@ try:
     rds.create_db_instance(
         DBInstanceIdentifier=DB_INSTANCE_ID,
         AllocatedStorage=20,
-        DBInstanceClass='db.t3.micro',
-        Engine='mysql',
+        DBInstanceClass='db.t3.medium',
+        Engine='mariadb',
         MasterUsername=DB_USER,
         MasterUserPassword=DB_PASS,
         DBName=DB_NAME,
