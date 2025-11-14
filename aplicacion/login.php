@@ -1,37 +1,25 @@
 <?php
 
-// Logging simple a /var/log/app/login.log
-$log_dir = '/var/log/app';
-$log_file = $log_dir . '/login.log';
-if (!is_dir($log_dir)) {
-    @mkdir($log_dir, 0777, true);
-}
-function app_log($msg) {
-    global $log_file;
-    $date = date('Y-m-d H:i:s');
-    @file_put_contents($log_file, "[$date] $msg\n", FILE_APPEND);
-}
-
 session_start();
 
 // Si ya está logueado, redirigir a index.php automáticamente
 
 if (isset($_SESSION['logueado']) && $_SESSION['logueado'] === true) {
-    app_log('Redirección a index.php por sesión activa desde IP ' . $_SERVER['REMOTE_ADDR']);
     header('Location: index.php');
     exit;
-}
+ }
 
 // Leer configuración desde config.php si se necesita conexión a la base de datos
 require_once __DIR__ . '/config.php';
 
 // Si no necesitas conexión a la base de datos para el login demo, puedes comentar o eliminar la siguiente sección:
-// $conn = new mysqli($host, $user, $pass, $db);
-// if ($conn->connect_error) {
-//     die('Error de conexión: ' . $conn->connect_error);
-// }
+ $conn = new mysqli($host, $user, $pass, $db);
+ if ($conn->connect_error) {
+     die('Error de conexión: ' . $conn->connect_error);
+ }
 
 $msg = '';
+// Remover validación de login, permitir acceso directo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario'], $_POST['password'])) {
     $usuario = trim($_POST['usuario']);
     $password = trim($_POST['password']);
@@ -40,12 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario'], $_POST['pa
     $pass_demo = getenv('APP_PASS') ?: 'admin123';
     if ($usuario === $user_demo && $password === $pass_demo) {
         $_SESSION['logueado'] = true;
-        app_log("Login exitoso para usuario '$usuario' desde IP " . $_SERVER['REMOTE_ADDR']);
+    // ...no loguear nada...
         header('Location: index.php');
         exit;
     } else {
         $msg = '<div class="error">Usuario o contraseña incorrectos</div>';
-        app_log("Login fallido para usuario '$usuario' desde IP " . $_SERVER['REMOTE_ADDR']);
+    // ...no loguear nada...
     }
 }
 ?>

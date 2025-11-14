@@ -1,5 +1,6 @@
 <?php
-$envPath = __DIR__ . '/..' . '/.env';
+// Buscar .env en el directorio anterior al del script
+$envPath = dirname(__DIR__) . '/.env';
 if (file_exists($envPath)) {
     // Lee claves en formato KEY=VALUE (sin comillas ni espacios alrededor)
     $vars = parse_ini_file($envPath, false, INI_SCANNER_RAW);
