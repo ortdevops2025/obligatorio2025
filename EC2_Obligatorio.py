@@ -14,13 +14,14 @@ sudo systemctl start httpd
 
 
 # Descargar archivos desde S3 al directorio web
-aws s3 sync s3://obligatorio2025qwertyuioppoiuytrewq /var/www/html/
+aws s3 sync s3://obligatorio2025qwertyuiop /var/www/html/
 
 # Permisos para los archivos
 
 chmod -R 755 /var/www/html
 chown -R apache:apache /var/www/html
 '''
+
 
 # Crear la instancia EC2
 response = ec2.run_instances(
