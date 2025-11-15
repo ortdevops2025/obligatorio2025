@@ -1,6 +1,6 @@
 import boto3
 from botocore.exceptions import ClientError
-import time
+
 import os
 
 # SECCION S3 - Creacion de bucket y copia de archivos
@@ -142,9 +142,9 @@ rds_info = rds.describe_db_instances(DBInstanceIdentifier=DB_INSTANCE_ID)
 RDS_ENDPOINT = rds_info['DBInstances'][0]['Endpoint']['Address']
 print(f"Endpoint RDS: {RDS_ENDPOINT}")
 
-##############################
-##Procesamiento de instancia de EC2
-################################
+#####################################
+##Procesamiento de instancia de EC2##
+#####################################
 
 #Bloque de User data con comandos para instalar las dependencias y preparacion de la aplicacion
 user_data = f'''#!/bin/bash
