@@ -36,7 +36,7 @@ try:
 except ClientError as e:
     print(f"Error subiendo archivo: {e}")
 
-# CREACION BASE RDS
+# CREACION de variables de base de datos
 
 print("Ingresar password maestro de la base:")
 RDS_ADMIN_PASSWORD = input() #Esto hace que no sea necesario hardcodear el password en el codigo
@@ -48,6 +48,7 @@ DB_NAME = "demo_db"  #Nombre sacado del archivo sql de ejemplo de la aplicacion,
 DB_USER = "admin"
 DB_PASS = RDS_ADMIN_PASSWORD
 
+#Se comienzan a crear las instancuas de EC2 y RDS
 rds = boto3.client('rds')
 
 ec2 = boto3.client('ec2')
@@ -142,7 +143,7 @@ RDS_ENDPOINT = rds_info['DBInstances'][0]['Endpoint']['Address']
 print(f"Endpoint RDS: {RDS_ENDPOINT}")
 
 ##############################
-##Creacion de instancia de EC2
+##Procesamiento de instancia de EC2
 ################################
 
 #Bloque de User data con comandos para instalar las dependencias y preparacion de la aplicacion
