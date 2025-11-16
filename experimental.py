@@ -42,8 +42,8 @@ except ClientError as e:
 
 # CREACION de variables de base de datos
 
-print("Ingresar password maestro de la base:")
-RDS_ADMIN_PASSWORD = input() #Esto hace que no sea necesario hardcodear el password en el codigo
+# print("Ingresar password maestro de la base: ")
+RDS_ADMIN_PASSWORD = input("Ingresar password maestro de la base: ") #Esto hace que no sea necesario hardcodear el password en el codigo
 os.environ["RDS_ADMIN_PASSWORD"] = RDS_ADMIN_PASSWORD
 
 
