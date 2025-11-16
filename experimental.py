@@ -9,10 +9,12 @@ s3 = boto3.client('s3')
 bucket_name = 'obligatorio2025qwertyuiop'
 
 # Crea el bucket si no exsite
+# En caso de existir y que sea nuestro, entra en el except y continua la ejecucion del codigo
 try:
     s3.create_bucket(Bucket=bucket_name)
     print(f"Bucket creado: {bucket_name}")
 except ClientError as e:
+    # siendo "e" la variable donde se guarda el tipo de error ocurrido
     if e.response['Error']['Code'] == 'BucketAlreadyOwnedByYou':
         print(f"El bucket {bucket_name} ya existe y es tuyo.")
     else:
@@ -34,6 +36,8 @@ try:
 
     print("Archivos subidos correctamente.")
 except ClientError as e:
+    # siendo "e" la variable donde se guarda el tipo de error ocurrido
+    # se muestra en pantalla el error ocurrido al subir los archivos
     print(f"Error subiendo archivo: {e}")
 
 # CREACION de variables de base de datos
