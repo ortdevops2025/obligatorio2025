@@ -42,17 +42,19 @@ except ClientError as e:
 
 # CREACION de variables de base de datos
 
+# Solicitud al usuario del password maestro de la base de datos
+# El password se guardara en la variable de entorno para ser usado de manera segura
 # print("Ingresar password maestro de la base: ")
 RDS_ADMIN_PASSWORD = input("Ingresar password maestro de la base: ") #Esto hace que no sea necesario hardcodear el password en el codigo
 os.environ["RDS_ADMIN_PASSWORD"] = RDS_ADMIN_PASSWORD
 
-
+# Se definen las variables de configuraion de la base de datos
 DB_INSTANCE_ID = "app-mysql"
 DB_NAME = "demo_db"  #Nombre sacado del archivo sql de ejemplo de la aplicacion, si es diferente no funciona sin modificar el .sql
 DB_USER = "admin"
 DB_PASS = RDS_ADMIN_PASSWORD
 
-#Se comienzan a crear las instancuas de EC2 y RDS
+#Se comienzan a crear las instancias de EC2 y RDS
 rds = boto3.client('rds')
 
 ec2 = boto3.client('ec2')
