@@ -127,7 +127,7 @@ try:
         PubliclyAccessible=False,
         BackupRetentionPeriod=0
     )
-    print("Creacndo instancia de RDS")
+    print("Creando instancia de RDS")
 except rds.exceptions.DBInstanceAlreadyExistsFault:
     print("La instancia RDS ya existe")
 
