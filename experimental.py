@@ -101,11 +101,14 @@ except ClientError as e:
 
 # SG RDS
 try:
+    # Se intenta crear el security group para rds
     response = ec2.create_security_group(
         GroupName=sg_rds_name,
         Description="ACCESSSQL"
     )
     sg_rds = response["GroupId"]
+
+    # Se abre el puerto 3306 (MariaDB) solo para el security group del ec2
     ec2.authorize_security_group_ingress(
         GroupId=sg_rds,
         IpPermissions=[{
@@ -118,9 +121,11 @@ try:
     print(f"SG RDS creado: {sg_rds}")
 except ClientError as e:
     if "InvalidGroup.Duplicate" in str(e):
+        # En este caso entonces solo se toma el id del grupo existente en lugar de crear uno nuevo
         sg_rds = ec2.describe_security_groups(GroupNames=[sg_rds_name])["SecurityGroups"][0]["GroupId"]
         print(f"SG RDS ya existe: {sg_rds}")
     else:
+        # En el caso de otro errore se detiene la ejecucion
         raise
 
 #################################
