@@ -7,6 +7,11 @@ LINK
 
 <img width="469" height="165" alt="image" src="https://github.com/user-attachments/assets/e46fa13c-ae44-4f9f-b783-6b02120454a2" />
 
+En el documento PDF encontrara detalles sobre:
+Declaracion de autoria
+Bibliografia (Incluido prompts utilizados con Inteligencia artificial generativa)
+Problemas encontrados
+Conclusiones finales
 
 SECCION I - SCRIPT DE BASH
 
@@ -212,5 +217,88 @@ SECCION II SCRIPT PYTHON
 <img width="417" height="121" alt="image" src="https://github.com/user-attachments/assets/710a377d-ec04-4364-b3be-11dab2184643" />
 
 Para la ejecucion del script de python, deben de satisfacerse ciertos requerimientos previos descriptos a continuacion:
+
+
+Tener AWS CLI configurado / credenciales disponibles en la máquina donde ejecutes los scripts.
+
+Suponiendo que se ejecute este proyecto desde una maquina de LINUX, se debe tener el AWS CLI instalado y confiogurado, Python 3, Pip, Boto3.
+
+Adicionalmente debemos contar con la KEY de EC2 para el acceso de SSH si es necesario y un rol que nos permita acceder al S3.
+
+Para ello, como ejemplo en Ubuntu AWS el cual fue utilizado ejecutamos:
+
+```
+Sudo apt update
+Sudo apt upgrade
+sudo apt install python3
+sudo apt install python3 python3-pip -y
+pip3 install boto3
+sudo apt install unzip
+pip3 install --upgrade --user awscli
+```
+
+
+Comprobacion de versiones usando como ejemplo las utilizadas:
+```
+apt show awscli | grep Version
+aws-cli/2.13.24 Python/3.11.5 Linux/6.8.0-31-generic exe/x86_64.ubuntu.22 prompt/off
+```
+Tambien debemos instalar GIT para poder clonar el repositorio:
+```
+sudo apt install git
+```
+Configuramos el AWS CLI (En caso de ser necesario, con las credenciales del ambiente a utilizar)
+
+Se utiliza el comando 
+```
+aws configure
+```
+Se pedirán los siguientes campos los cuales salen de la sesión de AWS a utilizar:
+
+AWS Access Key ID
+AWS Secret Access Key
+AWS Session Token
+Region Name: us-east-1 (si corresponde esa region)
+Default Format: json
+
+Ejemplo de configuracion:
+
+<img width="1004" height="155" alt="image" src="https://github.com/user-attachments/assets/91224f4b-4b30-4839-b587-23cf514fd8c2" />
+En caso de que debamos alterar algún valor, se puede correr el comando nuevamente o acceder al archivo de configuración el cual esta en texto plano en la ubicación:
+
+/home/usuario/.aws/credentials
+
+Instalación de agente de SSM de AWS en Ubuntu
+```
+sudo snap install amazon-ssm-agent –classic
+```
+Una vez teniendo todo configurado, clonamos el repositorio siguiente:
+```
+git clone https://github.com/ortdevops2025/obligatorio2025.git
+```
+
+Una vez clonado el repositorio e instalado las dependencias de la sección anterior, se debe proceder al despliegue de la instalación.
+
+NOTA: Todos los comandos se deben ejecutar desde la carpeta /obligatorio2025, la cual es la raíz del repositorio clonado.
+
+
+Desde el Directorio del repositorio clonado, ejecutar el script de instalacion y despliegue de la aplicación:
+```
+python3 obligatorio.py
+```
+<img width="1003" height="300" alt="image" src="https://github.com/user-attachments/assets/c165d099-c2b8-437e-969c-b53d329fbe9f" />
+
+PRUEBA DE USO
+Una vez finalizado el script, y la instancia de AWS correctamente iniciada, se podrá probar la aplicación ingresando al siguiente link:
+
+http://(IP PUBLICA DE INSTANCIA)/login/php
+
+Se utiliza el log in:
+admin
+admin123
+
+Se debe desplegar correctamente la información de la aplicación:
+<img width="652" height="303" alt="image" src="https://github.com/user-attachments/assets/8500b5c5-46f1-466f-a37f-d8d82c172f0b" />
+
 
 
