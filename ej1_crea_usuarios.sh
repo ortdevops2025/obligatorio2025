@@ -130,10 +130,11 @@ do
 			if [ "$flaginfo" -eq 1 ]; then #Muestra informacion si se uso el parametro -i
 			
 				echo "Usuario $USUARIO creado con éxito con datos indicados:"
-				echo "Comentario: ${COMENTARIO:-<valor por defecto>}"
-				echo "Dir home: ${HOME:-<valor por defecto>}"
-				echo "Asegurado existencia de directorio home: ${CREARHOME:-<valor por defecto>}"
-				echo "Shell por defecto: ${SHELL:-<valor por defecto>}"
+				# echo -e "\t" para lograr identacion
+				echo -e "\tComentario: ${COMENTARIO:-<valor por defecto>}"
+				echo -e "\tDir home: ${HOME:-<valor por defecto>}"
+				echo -e "\tAsegurado existencia de directorio home: ${CREARHOME:-<valor por defecto>}"
+				echo -e "\tShell por defecto: ${SHELL:-<valor por defecto>}"
 				echo
 			fi
 		else
