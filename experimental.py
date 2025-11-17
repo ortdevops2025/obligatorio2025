@@ -64,32 +64,39 @@ ec2 = boto3.client('ec2')
 #Creacion de Grupos de Seguridad####
 ####################################
 
-
-sg_name = "web-sg-boto3"
-sg_rds_name = "rds-sg-boto3"
+# Se define nombre del security group que usaremos para la instancia ec2 y RDS
+sg_name = "web-sg-boto3" 
+sg_rds_name = "rds-sg-boto3" 
 
 # Grupo de Seguridad de EC2
 try:
+    # Se intenta crear el security group para ec2
     response = ec2.create_security_group(
         GroupName=sg_name,
         Description="Permitir trafico web desde cualquier IP"
     )
+    # Se guarda el id del nuevo security group
     sg_ec2 = response["GroupId"]
+
+    # Se abre el puerto 80 (http) 
     ec2.authorize_security_group_ingress(
         GroupId=sg_ec2,
         IpPermissions=[{
             'IpProtocol': 'tcp',
             'FromPort': 80,
             'ToPort': 80,
-            'IpRanges': [{'CidrIp': '0.0.0.0/0'}]
+            'IpRanges': [{'CidrIp': '0.0.0.0/0'}] # Se permite acceso desde cualquier IP
         }]
     )
     print(f"SG EC2 creado: {sg_ec2}")
 except ClientError as e:
+    # En caso de que el security group ya exista, aws devuelve en el except "InvalidGroup.Duplicate"
     if "InvalidGroup.Duplicate" in str(e):
+        # En este caso entonces solo se toma el id del grupo existente en lugar de crear uno nuevo
         sg_ec2 = ec2.describe_security_groups(GroupNames=[sg_name])['SecurityGroups'][0]['GroupId']
         print(f"SG EC2 ya existe: {sg_ec2}")
     else:
+        # En el caso de otro errore se detiene la ejecucion 
         raise
 
 # SG RDS
