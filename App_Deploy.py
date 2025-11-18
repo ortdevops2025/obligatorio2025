@@ -6,7 +6,7 @@ import os
 # SECCION S3 - Creacion de bucket y copia de archivos
 s3 = boto3.client('s3')
 
-bucket_name = 'obligatorio2025qwertyuiop'
+bucket_name = 'obligatorio2025qwertyuiop555555555555'
 
 # Crea el bucket si no exsite
 # En caso de existir y que sea nuestro, entra en el except y continua la ejecucion del codigo
@@ -45,8 +45,13 @@ except ClientError as e:
 # Solicitud al usuario del password maestro de la base de datos
 # El password se guardara en la variable de entorno para ser usado de manera segura
 # print("Ingresar password maestro de la base: ")
-RDS_ADMIN_PASSWORD = input("Ingresar password maestro de la base: ") #Esto hace que no sea necesario hardcodear el password en el codigo
+
+RDS_ADMIN_PASSWORD = ""
+while int(len(RDS_ADMIN_PASSWORD)) < 8 :
+    RDS_ADMIN_PASSWORD = input("Ingresar password maestro de la base: ") #Esto hace que no sea necesario hardcodear el password en el codigo
+    print("El password debe ser minimo 8 caracteres")
 os.environ["RDS_ADMIN_PASSWORD"] = RDS_ADMIN_PASSWORD
+
 
 # Se definen las variables de configuraion de la base de datos
 DB_INSTANCE_ID = "app-mysql"
