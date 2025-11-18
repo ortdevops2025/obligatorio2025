@@ -97,7 +97,7 @@ do
 
 		# Comprobacion de existencia de usuario
 
-		if id "$USUARIO" >/dev/null 2>&1
+		if id "$USUARIO" >/dev/null 2>&1 #el comando id retorna 0 si es exitoso o distinto de 0 si no lo es
 		then
 			echo "ATENCION: el usuario $USUARIO ya existe"
 			continue
@@ -113,15 +113,19 @@ do
 
 		if [ "$CREARHOME" = "SI" ]
 		then
+			# con -m se crea el directorio home si no existe
 			useradd -m -c "$COMENTARIO" -d "$HOME" -s "$SHELL" "$USUARIO" >/dev/null 2>&1
 		else
+			# con -M se evita la creación del directorio home
 			useradd -M -c "$COMENTARIO" -d "$HOME" -s "$SHELL" "$USUARIO" >/dev/null 2>&1
 		fi
 
-		if [ $? -eq 0 ] #verifica que el comando de agregar usuario haya sido exitoso
+		if [ $? -eq 0 ] #verifica que el comando de agregar usuario haya sido exitoso,(exit 0)
 		then
-			if [ -n "$password" ]
+			if [ -n "$password" ] # se chequea que la variable password no este vacia
 			then
+				# se establece la contraseña del usuario usando chpasswd, ocultando errores
+				# chpasswd asigna la contraseña al usuario leida desde la entrada estandar
 				echo "$USUARIO:$password" | chpasswd 2>/dev/null
 			fi
 

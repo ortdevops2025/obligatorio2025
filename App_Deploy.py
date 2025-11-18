@@ -184,10 +184,10 @@ aws s3 sync s3://{bucket_name} /var/www/html/
 
 mv /var/www/html/init_db.sql /var/www/init_db.sql
 
-for i in {{1..20}}; do
-    mysql -h {RDS_ENDPOINT} -u {DB_USER} -p{DB_PASS} -e "SELECT 1;" {DB_NAME} && break
-    sleep 5
-done
+#for i in {{1..20}}; do
+#    mysql -h {RDS_ENDPOINT} -u {DB_USER} -p{DB_PASS} -e "SELECT 1;" {DB_NAME} && break
+#    sleep 5
+#done
 
 mysql -h {RDS_ENDPOINT} -u {DB_USER} -p{DB_PASS} {DB_NAME} < /var/www/init_db.sql
 
