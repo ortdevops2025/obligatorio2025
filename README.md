@@ -66,7 +66,7 @@ else
 fi
 
 ######################################
-#########VALIDAR ARCHIVO #############
+#########VALIDAR archivousu #############
 ######################################
 
 if [ ! $# -ge 1 ] #Verifica que se usen al menos un parametro en el script
@@ -124,7 +124,7 @@ do
 
 		# Comprobacion de existencia de usuario
 
-		if id "$USUARIO" >/dev/null 2>&1
+		if id "$USUARIO" >/dev/null 2>&1 #el comando id retorna 0 si es exitoso o distinto de 0 si no lo es
 		then
 			echo "ATENCION: el usuario $USUARIO ya existe"
 			continue
@@ -140,15 +140,19 @@ do
 
 		if [ "$CREARHOME" = "SI" ]
 		then
+			# con -m se crea el directorio home si no existe
 			useradd -m -c "$COMENTARIO" -d "$HOME" -s "$SHELL" "$USUARIO" >/dev/null 2>&1
 		else
+			# con -M se evita la creación del directorio home
 			useradd -M -c "$COMENTARIO" -d "$HOME" -s "$SHELL" "$USUARIO" >/dev/null 2>&1
 		fi
 
-		if [ $? -eq 0 ] #verifica que el comando de agregar usuario haya sido exitoso
+		if [ $? -eq 0 ] #verifica que el comando de agregar usuario haya sido exitoso,(exit 0)
 		then
-			if [ -n "$password" ]
+			if [ -n "$password" ] # se chequea que la variable password no este vacia
 			then
+				# se establece la contraseña del usuario usando chpasswd, ocultando errores
+				# chpasswd asigna la contraseña al usuario leida desde la entrada estandar
 				echo "$USUARIO:$password" | chpasswd 2>/dev/null
 			fi
 
@@ -157,17 +161,18 @@ do
 			if [ "$flaginfo" -eq 1 ]; then #Muestra informacion si se uso el parametro -i
 			
 				echo "Usuario $USUARIO creado con éxito con datos indicados:"
-				echo "Comentario: ${COMENTARIO:-<valor por defecto>}"
-				echo "Dir home: ${HOME:-<valor por defecto>}"
-				echo "Asegurado existencia de directorio home: ${CREARHOME:-<valor por defecto>}"
-				echo "Shell por defecto: ${SHELL:-<valor por defecto>}"
+				# echo -e "\t" para lograr identacion
+				echo -e "\tComentario: ${COMENTARIO:-<valor por defecto>}"
+				echo -e "\tDir home: ${HOME:-<valor por defecto>}"
+				echo -e "\tAsegurado existencia de directorio home: ${CREARHOME:-<valor por defecto>}"
+				echo -e "\tShell por defecto: ${SHELL:-<valor por defecto>}"
 				echo
 			fi
 		else
 			echo "ATENCION: el usuario $USUARIO no pudo ser creado"
 		fi
 	fi	
-done
+done < "$archivousu"
 
 ###########################
 ###INFORMACION A MOSTRAR###
@@ -176,7 +181,6 @@ done
 if [ "$flaginfo" -eq 1 ]; then
 	echo "Se han creado $contadorusuok usuarios con éxito."
 fi
-
 
 ################################################################################
 ```
