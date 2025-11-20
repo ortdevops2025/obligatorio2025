@@ -49,8 +49,9 @@ except ClientError as e:
 RDS_ADMIN_PASSWORD = input("Ingresar password maestro de la base: ")
 
 while len(RDS_ADMIN_PASSWORD) < 8 :
-    RDS_ADMIN_PASSWORD = input("Ingresar password maestro de la base: ") #Esto hace que no sea necesario hardcodear el password en el codigo
     print("El password debe ser minimo 8 caracteres")
+    RDS_ADMIN_PASSWORD = input("Ingresar password maestro de la base: ") #Esto hace que no sea necesario hardcodear el password en el codigo
+
 os.environ["RDS_ADMIN_PASSWORD"] = RDS_ADMIN_PASSWORD
 
 
