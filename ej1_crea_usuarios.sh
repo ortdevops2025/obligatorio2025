@@ -1,4 +1,5 @@
 #!/bin/bash
+#Fecha Modificado 24/11/2025
 
 flaginfo=0         # Variable para -i vale distinto de 0 se muestra flaginforamcion
 password=""    # Variable para -c que guarda el password
@@ -145,7 +146,8 @@ do
 			echo "ATENCION: el usuario $USUARIO no pudo ser creado"
 		fi
 	fi	
-done < "$archivousu"
+#done < "$archivousu"
+done
 
 ###########################
 ###INFORMACION A MOSTRAR###
