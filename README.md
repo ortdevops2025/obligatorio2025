@@ -1,9 +1,9 @@
-# obligatorio2025
+# Obligatorio2025 - Analista en Infraestructura Informatica - UNIVERSIDAD ORT
 Repositorio para obligatorio de DevOps Universidad ORT 2025 Sosa - Pintos
 
 NOTA: Documentacion mas detallada puede encontrarse en el archivo "Sosa_Pintos_Obligatorio2025DevOps.pdf" el cual se encuntra en este mismo repositorio:
 
-LINK
+https://github.com/ortdevops2025/obligatorio2025/blob/main/Sosa_Pintos_Obligatorio2025DevOps.pdf
 
 <img width="469" height="165" alt="image" src="https://github.com/user-attachments/assets/e46fa13c-ae44-4f9f-b783-6b02120454a2" />
 
@@ -26,6 +26,7 @@ Se muestra a continuación el script que esta adjunto en el repositorio.
 ################################################################################
 
 #!/bin/bash
+#Fecha Modificado 24/11/2025
 
 flaginfo=0         # Variable para -i vale distinto de 0 se muestra flaginforamcion
 password=""    # Variable para -c que guarda el password
@@ -172,14 +173,15 @@ do
 			echo "ATENCION: el usuario $USUARIO no pudo ser creado"
 		fi
 	fi	
-done < "$archivousu"
+#done < "$archivousu"
+done
 
 ###########################
 ###INFORMACION A MOSTRAR###
 ###########################
 
 if [ "$flaginfo" -eq 1 ]; then
-	echo "Se han creado $contadorusuok usuarios con éxito."
+	echo "Se han creado $contadorusuok usuarios con exito."
 fi
 
 ################################################################################
@@ -542,3 +544,61 @@ print("EC2 esta listo, ya puede navegar en el sitio")
 print("SG listos y asignados a EC2 y RDS")
 print("Navegue a la IP pública del EC2 cuando esté disponible")
 ```
+
+Uso de Inteligencia Artificial Generativa
+
+Para la realización de este trabajo, el uso de IAG fue utilizado EXCLUSIVAMENTE para la creación de gráficos específicos o conjunto de comandos básicos con motivo de verificación.
+
+A continuación, se detalla la lista de prompts utilizados.
+
+IAG 1 – Sugerencia de estructura
+https://chatgpt.com/
+Prompt: Sugerir estructura  estructura en Bash usando if que retorne ultimo comando y analice si es 0. Si es igual a 0 dejar libre para colocar un comando una acción, sino, devolver un mensaje de éxito. 
+
+IAG 2 – Sugerencia de estructura
+https://chatgpt.com/
+Prompt: Comando en linux que sirva para colocar un password automáticamente dentro de un script de bash junto a useradd
+
+IAG 3 – Sugerencia de estructura
+https://chatgpt.com/
+Prompt: Ejemplo de bloque en Bash que cree usuarios con el comando adduser, compatible en ubuntu y centos.
+Suponer una variable true para crear un home y un false entregaría un home por defecto.
+Agregar en el ejemplo, el comentario de usuario
+Utilizar if y else preferentemente
+
+IAG 4 – Sugerencia de estructura
+https://chatgpt.com/
+Prompt: Como asignar valores por defecto a $SHELL o $HOME
+
+IAG 5 – Orden de deploy
+https://chatgpt.com/
+Prompt: En que orden debería implementar los scripts en python con boto3 para deployar una aplicación en dos capas, la idea principal es tener, uno para ec2, otro para base de datos RDS, otro de S3 y uno para security groups 
+
+IAG 6 – Subida de S3 a EC2
+https://chatgpt.com/
+Prompt: como puedo subir todos los archivos de un S3 a un directorio de una instancia EC2 usando Python y boto3
+
+IAG6 – Variable de entorno para password
+https://chatgpt.com/
+Prompt: Como agregar una variable de entorno RDS_ADMIN_PASSWORD en Python para ejecutar en linux
+
+IAG 7 – RDS Security Group
+https://chatgpt.com/
+Prompt: Optimizar el bloque de Script dado para el security group de RDS para el puerto 3306
+
+
+IAG 8 – Wait en instancias
+https://chatgpt.com/
+Prompt: Ejemplo para bloque de espera en RDS o EC2 para que la instancia este lista, usar get_waiter
+
+IAG 9 – Subida de S3 a EC2
+https://chatgpt.com/
+Prompt: Bloque en bash que sirva para esperar que una conexion a una base de datos sea satisfactoria con RDS
+
+IAG 10 – Subida de S3 a EC2
+https://chatgpt.com/
+Prompt: Generar banner que tenga el símbolo y y el texto BASH con algún elemento discreto
+
+IAG 11 – Formato de README.MD
+https://chatgpt.com/
+Prompt: (se copia el contenido del readme.md) Generar formato para README.MD de github sin modificar las imágenes insertadas o modificar el codigo fuente de BASH o PYTHON comentado. No utilizar iconos, solo formatear de manera profesional estándar el mismo.
