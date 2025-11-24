@@ -154,5 +154,5 @@ done
 ###########################
 
 if [ "$flaginfo" -eq 1 ]; then
-	echo "Se han creado $contadorusuok usuarios con éxito."
+	echo "Se han creado $contadorusuok usuarios con exito."
 fi
