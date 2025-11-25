@@ -4,8 +4,15 @@ Repositorio para obligatorio de DevOps Universidad ORT 2025 Sosa - Pintos
 NOTA: Documentacion mas detallada puede encontrarse en el archivo "Sosa_Pintos_Obligatorio2025DevOps.pdf" el cual se encuntra en este mismo repositorio:
 
 https://github.com/ortdevops2025/obligatorio2025/blob/main/Sosa_Pintos_Obligatorio2025DevOps.pdf
-
-<img width="469" height="165" alt="image" src="https://github.com/user-attachments/assets/e46fa13c-ae44-4f9f-b783-6b02120454a2" />
+```
+ _               _     
+| |             | |    
+| |__   __ _ ___| |__  
+| '_ \ / _` / __| '_ \ 
+| |_) | (_| \__ \ | | |
+|_.__/ \__,_|___/_| |_|
+                       
+```                       
 
 En el documento PDF encontrara detalles sobre:
 Declaracion de autoria
