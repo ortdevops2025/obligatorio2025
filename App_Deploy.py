@@ -2,11 +2,17 @@ import boto3
 from botocore.exceptions import ClientError
 
 import os
+import random
 
 # SECCION S3 - Creacion de bucket y copia de archivos
 s3 = boto3.client('s3')
 
-bucket_name = 'obligatorio2025qwertyuiop5555555555585'
+# se randomiza el nombre de bucket
+aleatorio = str(random.randint(0, 999999))
+
+
+bucket_name = 'obligatorio2025enusnh' + aleatorio
+
 
 # Crea el bucket si no exsite
 # En caso de existir y que sea nuestro, entra en el except y continua la ejecucion del codigo
@@ -56,7 +62,9 @@ os.environ["RDS_ADMIN_PASSWORD"] = RDS_ADMIN_PASSWORD
 
 
 # Se definen las variables de configuraion de la base de datos
-DB_INSTANCE_ID = "app-mysql"
+# Se randomiza nombre de instancia de DB
+aleatorio3 = str(random.randint(0, 999999))
+DB_INSTANCE_ID = "app-mysql" + aleatorio3
 DB_NAME = "demo_db"  #Nombre sacado del archivo sql de ejemplo de la aplicacion, si es diferente no funciona sin modificar el .sql
 DB_USER = "admin"
 DB_PASS = RDS_ADMIN_PASSWORD
@@ -72,8 +80,11 @@ ec2 = boto3.client('ec2')
 ####################################
 
 # Se define nombre del security group que usaremos para la instancia ec2 y RDS
-sg_name = "web-sg-boto3" 
-sg_rds_name = "rds-sg-boto3" 
+# se randomiza nombres de security groups
+aleatorio1 = str(random.randint(0, 999999))
+aleatorio2 = str(random.randint(0, 999999))
+sg_name = "web-sg-boto3" + aleatorio1 
+sg_rds_name = "rds-sg-boto3" + aleatorio2 
 
 # Grupo de Seguridad de EC2
 try:
