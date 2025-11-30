@@ -310,7 +310,7 @@ NOTA: durante el deployment hay que especificar el password maestro de la base d
 PRUEBA DE USO
 Una vez finalizado el script, y la instancia de AWS correctamente iniciada, se podrá probar la aplicación ingresando al siguiente link:
 
-http://(IP PUBLICA DE INSTANCIA)/login/php
+http://(IP PUBLICA DE INSTANCIA)/index.php
 
 Se utiliza el log in:
 admin
