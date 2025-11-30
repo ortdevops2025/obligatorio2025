@@ -241,21 +241,16 @@ Adicionalmente debemos contar con la KEY de EC2 para el acceso de SSH si es nece
 Para ello, como ejemplo en Ubuntu AWS el cual fue utilizado ejecutamos:
 
 ```
-Sudo apt update
-Sudo apt upgrade
+sudo apt update
+sudo apt upgrade
 sudo apt install python3
-sudo apt install python3 python3-pip -y
-pip3 install boto3
+sudo apt install python3 python3-pip -y         #** En caso de que la distribucion de este error: 'This enviroment is externally managed', sudo apt install pipx
+pip3 install boto3                              #** En caso de que la distribucion de este error: 'This enviroment is externally managed', pipx install boto3 --include deps 
 sudo apt install unzip
-pip3 install --upgrade --user awscli
+pip3 install --upgrade --user awscli            #** En caso de que la distribucion de este error: 'This enviroment is externally managed', pipx istall awscli
+                                                                                                            alternativa:, sudo snap install aws-cli --calssic
 ```
 
-
-Comprobacion de versiones usando como ejemplo las utilizadas:
-```
-apt show awscli | grep Version
-aws-cli/2.13.24 Python/3.11.5 Linux/6.8.0-31-generic exe/x86_64.ubuntu.22 prompt/off
-```
 Tambien debemos instalar GIT para poder clonar el repositorio:
 ```
 sudo apt install git
@@ -265,6 +260,12 @@ Configuramos el AWS CLI (En caso de ser necesario, con las credenciales del ambi
 Se utiliza el comando 
 ```
 aws configure
+```
+
+Comprobacion de versiones usando como ejemplo las utilizadas:
+```
+apt show awscli | grep Version
+aws-cli/2.13.24 Python/3.11.5 Linux/6.8.0-31-generic exe/x86_64.ubuntu.22 prompt/off
 ```
 Se pedirán los siguientes campos los cuales salen de la sesión de AWS a utilizar:
 
@@ -297,9 +298,14 @@ NOTA: Todos los comandos se deben ejecutar desde la carpeta /obligatorio2025, la
 
 Desde el Directorio del repositorio clonado, ejecutar el script de instalacion y despliegue de la aplicación:
 ```
-python3 obligatorio.py
+cambiarse a la carpeta clonada (por ejemplo cd ~/obligatorio2025
+python3 App_Deploy.py
 ```
 <img width="1003" height="300" alt="image" src="https://github.com/user-attachments/assets/c165d099-c2b8-437e-969c-b53d329fbe9f" />
+
+
+NOTA: durante el deployment hay que especificar el password maestro de la base de datos (RDS)
+*El password maestro debe tener 8 caraceres de largo, en caso contrario la aplicacion lo pedira denuevo
 
 PRUEBA DE USO
 Una vez finalizado el script, y la instancia de AWS correctamente iniciada, se podrá probar la aplicación ingresando al siguiente link:
