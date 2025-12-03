@@ -1,9 +1,17 @@
 # Obligatorio2025 - Analista en Infraestructura Informatica - UNIVERSIDAD ORT
 Repositorio para obligatorio de DevOps Universidad ORT 2025 Sosa - Pintos
 
+## Índice
+- [BASH SCRIPT](#script_bash)
+- [BASH_Pruebas de Uso](#pruebasuso)
+- [PYTHON SCRIPT](#Script_Python)
+
+  
 NOTA: Documentacion mas detallada puede encontrarse en el archivo "Sosa_Pintos_Obligatorio2025DevOps.pdf" el cual se encuntra en este mismo repositorio:
 
 https://github.com/ortdevops2025/obligatorio2025/blob/main/Sosa_Pintos_Obligatorio2025DevOps.pdf
+
+## script_bash
 ```
  _               _     
 | |             | |    
@@ -194,6 +202,8 @@ fi
 ################################################################################
 ```
 
+## pruebasuso
+
 PRUEBA DE USO:
 
 Se procede a mostrar ejemplos de uso y los resultados obtenidos incluidos algunos errores testeados:
@@ -226,6 +236,7 @@ Archivo /etc/passwd mostrando los nuevos usuarios agregados
 
 
 SECCION II SCRIPT PYTHON
+## Script_Python
 
 <img width="417" height="121" alt="image" src="https://github.com/user-attachments/assets/710a377d-ec04-4364-b3be-11dab2184643" />
 
